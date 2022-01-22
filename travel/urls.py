@@ -15,5 +15,5 @@ api_urlpatterns = [
     ),
 ]
 urlpatterns = [
-    path("", PermitFromView.as_view()),
+    path("", PermitFromView.as_view(), name="permit"),
 ]

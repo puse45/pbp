@@ -71,24 +71,37 @@ class Permit(BaseModel):
             )
 
         country_of_origin_data = self.country_covid_data(
-            country=self.country_of_origin.name.lower()
+            country=self.country_of_origin.code.lower()
         )
         country_of_destination_data = self.country_covid_data(
-            country=self.country_of_destination.name.lower()
+            country=self.country_of_destination.code.lower()
         )
-        try:
-            if country_of_origin_data[0].get("Cases") > country_of_destination_data[
-                0
-            ].get("Cases"):
-                raise ValidationError(
-                    {
-                        "country_of_destination": _(
-                            f"Sorry traveller cannot travel from {self.country_of_origin.name} to {self.country_of_destination.name} because the number of Covid cases in the Country of origin  is higher than in the Country of destination by {int(country_of_origin_data[0].get('Cases')) - int(country_of_destination_data[0].get('Cases'))}."
-                        )
-                    }
-                )
-        except Exception as e:
-            raise ValidationError("Covid 19 Date not found") from e
+        if not isinstance(country_of_origin_data, list):
+            raise ValidationError(
+                {
+                    "country_of_origin": _(
+                        f"Covid Data {country_of_origin_data.get('message')}"
+                    )
+                }
+            )
+        if not isinstance(country_of_destination_data, list):
+            raise ValidationError(
+                {
+                    "country_of_destination": _(
+                        f"Covid Data {country_of_destination_data.get('message')}"
+                    )
+                }
+            )
+        if country_of_origin_data[0].get("Cases") > country_of_destination_data[0].get(
+            "Cases"
+        ):
+            raise ValidationError(
+                {
+                    "country_of_destination": _(
+                        f"Sorry traveller cannot travel from {self.country_of_origin.name} to {self.country_of_destination.name} because the number of Covid cases in the Country of origin  is higher than in the Country of destination by {int(country_of_origin_data[0].get('Cases')) - int(country_of_destination_data[0].get('Cases'))}."
+                    )
+                }
+            )
 
     def country_covid_data(self, country, status="confirmed"):
         to_date = datetime.datetime.strftime(

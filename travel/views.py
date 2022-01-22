@@ -1,5 +1,7 @@
 import logging
 
+from django.contrib import messages
+from django.urls import reverse
 from django.views.generic import FormView
 from django_filters import rest_framework as filters
 from rest_framework import generics, status
@@ -52,3 +54,15 @@ class PermitView(generics.GenericAPIView):
 class PermitFromView(FormView):
     form_class = PermitForm
     template_name = "permit.html"
+    success_url = "/travel/"
+
+    def get_success_url(self):
+        messages.add_message(
+            self.request, messages.SUCCESS, "form submission successful"
+        )
+        return reverse("travel:permit")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Travel Permit"
+        return context

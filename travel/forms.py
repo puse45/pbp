@@ -17,7 +17,7 @@ class PermitForm(BaseModelForm):
     def as_plain(self):
         "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
         return self._html_output(
-            normal_row='<div class="col-lg-3 col-md-3 col-sm-4 form-control-label">%(label)s</div> <div class="col-lg-9 col-md-9 col-sm-8"><div class="form-group">%(field)s%(errors)s%(help_text)s</div></div>',
+            normal_row='<div class="row mb-3"><label class="col-sm-2 col-form-label">%(label)s</label><div class="col-sm-10">%(field)s<small class="text-danger">%(errors)s</small><small  class="text-info">%(help_text)s</small></div></div>',
             error_row="%s",
             row_ender="</div>",
             help_text_html='<br /><span class="helptext">%s</span>',

@@ -87,6 +87,23 @@ class PermitSerializer(serializers.ModelSerializer):
         country_of_destination_data = country_covid_data(
             country=country_of_destination.lower()
         )
+        if not isinstance(country_of_origin_data, list):
+            raise serializers.ValidationError(
+                {
+                    "country_of_origin": _(
+                        f"Covid Data {country_of_origin_data.get('message')}"
+                    )
+                }
+            )
+
+        if not isinstance(country_of_destination_data, list):
+            raise serializers.ValidationError(
+                {
+                    "country_of_destination": _(
+                        f"Covid Data {country_of_destination_data.get('message')}"
+                    )
+                }
+            )
         if country_of_origin_data[0].get("Cases") > country_of_destination_data[0].get(
             "Cases"
         ):

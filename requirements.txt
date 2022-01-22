@@ -14,3 +14,4 @@ pre-commit==2.12.1
 pylint==2.7.2
 pylint-django==2.4.4
 python-decouple==3.4
+seed-isort-config==2.2.0

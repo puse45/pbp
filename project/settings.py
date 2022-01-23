@@ -232,4 +232,4 @@ CORONA_VIRUS_API_AUTHORIZATION_TOKEN = config(
 )
 
 # Activate Django Heroku.
-# django_heroku.settings((locals()))
+django_heroku.settings((locals()))

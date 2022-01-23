@@ -10,10 +10,10 @@ router = DefaultRouter()
 
 api_urlpatterns = [
     path(
-        "",
+        "permit/",
         PermitView.as_view(),
     ),
 ]
 urlpatterns = [
-    path("", PermitFromView.as_view(), name="permit"),
+    path("permit/", PermitFromView.as_view(), name="permit"),
 ]

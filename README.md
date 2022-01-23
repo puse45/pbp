@@ -5,17 +5,17 @@ Create a web client form and an API endpoint for travel permit inquiries using D
 ### Input data
 API must take the following fields as input:
 
-* Date of travel 
+* Date of travel
 * Date of return (optional)
-* Country of origin 
-* Country of destination 
+* Country of origin
+* Country of destination
 * Age of traveller
 
 ### Criteria Check:
-* Date of travel is between the next 2 and 5 following working days from the date of request. Otherwise, the travel permit must be denied. 
-* If Date of return is present, and date of return is within 2 months of the Date of travel, then the travel can be approved. In any other case the travel permit must be denied. 
-* Country of origin and Country of destination must be valid country names. 
-* Travel is only allowed from countries where the number of Covid cases in the Country of origin is lower than in the Country of destination. 
+* Date of travel is between the next 2 and 5 following working days from the date of request. Otherwise, the travel permit must be denied.
+* If Date of return is present, and date of return is within 2 months of the Date of travel, then the travel can be approved. In any other case the travel permit must be denied.
+* Country of origin and Country of destination must be valid country names.
+* Travel is only allowed from countries where the number of Covid cases in the Country of origin is lower than in the Country of destination.
 * Travel is only allowed for travellers older than 21 and younger than 65. However, if a traveler is older than 15 years old, he/she can travel with the supervision of an adult. (You must show this prompt in your output when appropriate)
 * Tests for the above scenarios
 
@@ -71,9 +71,11 @@ http://localhost:8000
 ```shell
 http://localhost:8000/travel/permit/
 ```
-### API Documentation
+### API Collection
 
-[Postman Collection](https://www.getpostman.com/collections/c557372d10e61f080bf7)
+[Postman Collection](https://www.getpostman.com/collections/842fb9c6e38732374610)
 
 
+### Deployment
 
+### Github Link

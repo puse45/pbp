@@ -76,6 +76,18 @@ http://localhost:8000/travel/permit/
 [Postman Collection](https://www.getpostman.com/collections/842fb9c6e38732374610)
 
 
-### Deployment
+### Deployment Heroku Server
+[https://travelpermitpbp.herokuapp.com](https://travelpermitpbp.herokuapp.com)
+### Access Django Admin Panel
+[https://travelpermitpbp.herokuapp.com/admin](https://travelpermitpbp.herokuapp.com/admin)
+```shell
+username: admin
+password: admin
+```
+### Github Clone Link
+[git clone](https://github.com/puse45/pbp.git)
 
-### Github Link
+### Time Breakdown
+
+[https://docs.google.com/document/d/1MZylx2UKexWxbwZNZmLpXzUeY2JaLWZDQ4Q8FphUvdk/edit?usp=sharing](https://docs.google.com/document/d/1MZylx2UKexWxbwZNZmLpXzUeY2JaLWZDQ4Q8FphUvdk/edit?usp=sharing)
+

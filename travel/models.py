@@ -4,15 +4,19 @@ import requests
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+
 # Create your models here.
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
 from base.models import BaseModel
-from travel.validators import (age_of_traveller_limit,
-                               validate_maximum_date_of_travel,
-                               validate_minimum_date_of_travel,
-                               validate_weekday)
+from travel.validators import (
+    age_of_traveller_limit,
+    travel_date_less_present_date,
+    validate_maximum_date_of_travel,
+    validate_minimum_date_of_travel,
+    validate_weekday,
+)
 
 
 class Permit(BaseModel):
@@ -25,7 +29,9 @@ class Permit(BaseModel):
             validate_maximum_date_of_travel,
         ],
     )
-    date_of_return = models.DateField(null=True, blank=True)
+    date_of_return = models.DateField(
+        null=True, blank=True, validators=[travel_date_less_present_date]
+    )
     country_of_origin = CountryField(
         null=False, blank=False, blank_label="(select country of origin)"
     )
@@ -92,6 +98,10 @@ class Permit(BaseModel):
                     )
                 }
             )
+        if not country_of_origin_data:
+            raise ValidationError({"country_of_origin": _("Covid Data not found")})
+        if not country_of_destination_data:
+            raise ValidationError({"country_of_destination": _("Covid Data not found")})
         if country_of_origin_data[0].get("Cases") > country_of_destination_data[0].get(
             "Cases"
         ):

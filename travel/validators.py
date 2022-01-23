@@ -12,6 +12,14 @@ def validate_weekday(value):
         )
 
 
+def travel_date_less_present_date(value):
+    if value < datetime.datetime.today().date():
+        raise ValidationError(
+            _(f"{value} cannot book less than today."),
+            params={"value": value},
+        )
+
+
 def validate_minimum_date_of_travel(value):
     earlies_travel_date = datetime.datetime.now().date() + datetime.timedelta(days=2)
     if value < earlies_travel_date:

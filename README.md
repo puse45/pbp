@@ -82,7 +82,7 @@ http://localhost:8000/travel/permit/
 [https://travelpermitpbp.herokuapp.com/admin](https://travelpermitpbp.herokuapp.com/admin)
 ```shell
 username: admin
-password: admin
+password: admin123456
 ```
 ### Github Clone Link
 [git clone](https://github.com/puse45/pbp.git)

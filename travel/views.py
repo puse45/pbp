@@ -54,7 +54,6 @@ class PermitView(generics.GenericAPIView):
 class PermitFromView(FormView):
     form_class = PermitForm
     template_name = "permit.html"
-    success_url = "/travel/"
 
     def get_success_url(self):
         messages.add_message(
@@ -66,3 +65,7 @@ class PermitFromView(FormView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Travel Permit"
         return context
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

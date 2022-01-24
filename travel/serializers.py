@@ -104,6 +104,10 @@ class PermitSerializer(serializers.ModelSerializer):
                     )
                 }
             )
+        if not country_of_origin_data:
+            raise ValidationError({"country_of_origin": _("Covid Data not found")})
+        if not country_of_destination_data:
+            raise ValidationError({"country_of_destination": _("Covid Data not found")})
         if country_of_origin_data[0].get("Cases") > country_of_destination_data[0].get(
             "Cases"
         ):

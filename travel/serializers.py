@@ -52,9 +52,6 @@ class PermitSerializer(serializers.ModelSerializer):
         age_of_traveller = attrs.get("age_of_traveller", None)
         is_supervised = attrs.get("is_supervised", None)
 
-        print(country_of_destination)
-        print(country_of_origin)
-
         if date_of_return:
             latest_date_of_return = date_of_travel + datetime.timedelta(days=60)
             if date_of_return >= latest_date_of_return:
@@ -105,9 +102,13 @@ class PermitSerializer(serializers.ModelSerializer):
                 }
             )
         if not country_of_origin_data:
-            raise ValidationError({"country_of_origin": _("Covid Data not found")})
+            raise serializers.ValidationError(
+                {"country_of_origin": _("Covid Data not found")}
+            )
         if not country_of_destination_data:
-            raise ValidationError({"country_of_destination": _("Covid Data not found")})
+            raise serializers.ValidationError(
+                {"country_of_destination": _("Covid Data not found")}
+            )
         if country_of_origin_data[0].get("Cases") > country_of_destination_data[0].get(
             "Cases"
         ):
